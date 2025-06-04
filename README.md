@@ -92,9 +92,9 @@ Website:[https://www.umu.ac.ug](https://www.umu.ac.ug)
 
 Team
 **Brian Kasozi**
-**Ocaaya Isaac  2024-B071-12942**
+**Ocaaya Isaac 2024-B071-12942**
 **Namulema Hellen Eva**
-**Nsubuga Paul**
+**Nsubuga Nicholas Paul 2023-BO71-22173**
 **Emmanuel Muhereza**
 
 © 2025 Uganda Martyrs Innovation Center (UMIC), Uganda Martyrs University
