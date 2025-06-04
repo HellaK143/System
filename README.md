@@ -92,7 +92,7 @@ Website:[https://www.umu.ac.ug](https://www.umu.ac.ug)
 
 Team
 **Brian Kasozi**
-**Ocaaya Isaac 2024-B071-12942**
+**Ocaaya Isaac  2024-B071-12942**
 **Namulema Hellen Eva**
 **Nsubuga Paul**
 **Emmanuel Muhereza**
