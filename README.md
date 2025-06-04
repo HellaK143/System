@@ -91,10 +91,10 @@ Email:bkasozi@umu.ac.ug
 Website:[https://www.umu.ac.ug](https://www.umu.ac.ug)
 
 Team
-**Brian Kasozi
-**Ocaaya Isaac
-**Namulema Hellen Eva
-**Nsubuga Paul
+**Brian Kasozi**
+**Ocaaya Isaac**
+**Namulema Hellen Eva**
+**Nsubuga Paul**
 **Emmanuel Muhereza**
 
 © 2025 Uganda Martyrs Innovation Center (UMIC), Uganda Martyrs University
