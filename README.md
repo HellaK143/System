@@ -78,11 +78,11 @@ The UMIC Entrepreneur Recruitment System is a webbased platform designed to faci
 
 > Adapt this section based on your actual implementation
 
- Frontend: HTML, CSS, JavaScript (React or Vue.js)
- Backend: PHP / Node.js / Django
- Database: MySQL / PostgreSQL
- Authentication: JWT / Sessionbased
- Deployment: Docker / AWS / Ubuntu Server
+ Frontend: Bootstrap (HTML, JS,CSS)
+ Backend: PHP 
+ Database: MySQL 
+ Authentication: JWT / Sessionbased/ Auth02
+ Deployment: Ubuntu Server
 
 
 ## 📩 Contact
