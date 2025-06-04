@@ -74,9 +74,7 @@ The UMIC Entrepreneur Recruitment System is a webbased platform designed to faci
  Admin (Head of Entrepreneurship Program)
 
 
-## ⚙️ Tech Stack (Example)
-
-> Adapt this section based on your actual implementation
+## ⚙️ Tech Stack
 
  Frontend: Bootstrap (HTML, JS,CSS)
  Backend: PHP 
