@@ -2,8 +2,7 @@
 
 ## 🧩 Overview
 
-The UMIC Entrepreneur Recruitment System is a webbased platform designed to facilitate the recruitment of aspiring entrepreneurs at Uganda Martyrs University. It simplifies the entire process — from application submission to evaluation, interview scheduling, and communication — while aligning with UMU’s branding and accessibility standards.
-
+The UMU Entrepreneur Recruitment System is a web based platform designed to facilitate the recruitment of aspiring entrepreneursON DIFFERENT PROGRAMS at Uganda Martyrs University. It simplifies the entire process from application submission to evaluation, interview scheduling, and communication while aligning with UMU’s branding and accessibility standards.
 
 ## ✅ Functional Requirements
 
