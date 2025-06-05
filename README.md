@@ -91,7 +91,7 @@ Email:bkasozi@umu.ac.ug
 Website:[https://www.umu.ac.ug](https://www.umu.ac.ug)
 
 Team
-**Brian Kasozi**
+**Brian Kasoz Bkasozi2umu.ac.ugi**
 **Ocaaya Isaac 2024-B071-12942**
 **Namulema Hellen Eva**
 **Nsubuga Nicholas Paul 2023-BO71-22173**
