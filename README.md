@@ -94,7 +94,7 @@ Team
 **Brian Kasozi**
 **Ocaaya Isaac**
 **Namulema Hellen Eva**
-**Nsubuga Paul**
+**Nsubuga Nicholas Paul 2023-BO71-22173**
 **Emmanuel Muhereza**
 
 © 2025 Uganda Martyrs Innovation Center (UMIC), Uganda Martyrs University
