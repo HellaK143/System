@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UMU Innovation Office</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-xl navbar-dark">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="logo.png" alt="UMU Logo" class="logo me-2">
+                <div class="brand-text">
+                    <span class="main-brand">Uganda Martyrs University</span>
+                    <span class="sub-brand">Innovation Office</span>
+                </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="programsDropdown" role="button" data-bs-toggle="dropdown">Programs</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">TAG DEV 2.0</a></li>
+                            <li><a class="dropdown-item" href="#">SUESCA</a></li>
+                            <li><a class="dropdown-item" href="#">AI Innovation Challenge</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#">Partnerships</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Mentorship</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Incubation</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">News</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link entrepreneur-portal" href="#">Entrepreneur Portal</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Slider -->
+    <div class="swiper-container hero-slider">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" style="background-image: url('slide1.jpg');">
+                <div class="slide-content">
+                    <h1>Startup Incubation</h1>
+                    <p>Supporting emerging entrepreneurs with mentorship and resources</p>
+                </div>
+            </div>
+            <div class="swiper-slide" style="background-image: url('slide2.jpg');">
+                <div class="slide-content">
+                    <h1>Innovation Programs</h1>
+                    <p>Fostering technological advancement across Uganda and Africa</p>
+                </div>
+            </div>
+            <div class="swiper-slide" style="background-image: url('slide3.jpg');">
+                <div class="slide-content">
+                    <h1>Mentorship</h1>
+                    <p>Connect with industry experts and experienced entrepreneurs</p>
+                </div>
+            </div>
+            <div class="swiper-slide" style="background-image: url('slide4.jpg');">
+                <div class="slide-content">
+                    <h1>Partnerships</h1>
+                    <p>Building strong collaborations for innovation success</p>
+                </div>
+            </div>
+            <div class="swiper-slide" style="background-image: url('slide5.jpg');">
+                <div class="slide-content">
+                    <h1>Research & Development</h1>
+                    <p>Advancing knowledge through innovative research</p>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+    </div>
+
+    <!-- Main Content Sections -->
+    <section class="programs-section py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Innovation Programs</h2>
+            <p class="text-center mb-5">Join our cutting-edge programs designed to foster entrepreneurship, innovation, and technological advancement across Uganda and Africa.</p>
+            
+            <div class="row g-4">
+                <!-- TAG DEV 2.0 -->
+                <div class="col-md-4">
+                    <div class="program-card">
+                        <div class="icon-wrapper">
+                            <i class="program-icon tag-icon"></i>
+                        </div>
+                        <h3>TAG DEV 2.0</h3>
+                        <p>Technology and Growth Development program for emerging tech entrepreneurs</p>
+                        <!-- Update all Apply Here buttons -->
+                        <a href="application.html" class="btn btn-apply">Apply Here</a>
+                    </div>
+                </div>
+                <!-- SUESCA -->
+                <div class="col-md-4">
+                    <div class="program-card">
+                        <div class="icon-wrapper">
+                            <i class="program-icon suesca-icon"></i>
+                        </div>
+                        <h3>SUESCA</h3>
+                        <p>Supporting University Entrepreneurship in Sub-Saharan Africa</p>
+                        <a href="#" class="btn btn-apply">Apply Here</a>
+                    </div>
+                </div>
+                <!-- AI Innovation Challenge -->
+                <div class="col-md-4">
+                    <div class="program-card">
+                        <div class="icon-wrapper">
+                            <i class="program-icon ai-icon"></i>
+                        </div>
+                        <h3>AI Innovation Challenge</h3>
+                        <p>Artificial Intelligence solutions for African development challenges</p>
+                        <a href="#" class="btn btn-apply">Apply Here</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4 mt-4">
+                <!-- UNESCO Africa Engineering Week -->
+                <div class="col-md-6">
+                    <div class="program-card">
+                        <div class="icon-wrapper">
+                            <i class="program-icon unesco-icon"></i>
+                        </div>
+                        <h3>UNESCO Africa Engineering Week</h3>
+                        <p>Engineering innovation and entrepreneurship development program</p>
+                        <a href="#" class="btn btn-apply">Apply Here</a>
+                    </div>
+                </div>
+                <!-- Junior Achievers Uganda -->
+                <div class="col-md-6">
+                    <div class="program-card">
+                        <div class="icon-wrapper">
+                            <i class="program-icon junior-icon"></i>
+                        </div>
+                        <h3>Junior Achievers Uganda</h3>
+                        <p>Youth entrepreneurship and financial literacy program</p>
+                        <a href="#" class="btn btn-apply">Apply Here</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-section text-center py-5">
+        <div class="container">
+            <h2>Looking for mentorship opportunities or want to become a business advisor?</h2>
+            <a href="#" class="btn btn-outline-light mt-4">Get in touch</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <div class="footer-info">
+                        <p>Fostering innovation, entrepreneurship, and technological advancement to drive economic growth and development across Uganda and Africa.</p>
+                        <div class="mission-box">
+                            <h5>Our Mission</h5>
+                            <p>Empowering the next generation of innovators through cutting-edge programs and mentorship.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                    <h5>Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Programs</a></li>
+                        <li><a href="#">Partnerships</a></li>
+                        <li><a href="#">Mentorship</a></li>
+                        <li><a href="#">Incubation</a></li>
+                        <li><a href="#">News</a></li>
+                        <li><a href="#">Gallery</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5>Featured Programs</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">TAG DEV 2.0</a></li>
+                        <li><a href="#">SUESCA</a></li>
+                        <li><a href="#">AI Innovation Challenge</a></li>
+                        <li><a href="#">UNESCO Africa Engineering</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h5>Contact Us</h5>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-envelope"></i> innovation@umu.ac.ug</li>
+                        <li><i class="fas fa-phone"></i> +256 XXX XXX XXX</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Nkozi, Uganda</li>
+                    </ul>
+                    <div class="social-links mt-3">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <p>&copy; 2025 Uganda Martyrs University - Innovation Office. All rights reserved.</p>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <p class="powered-by">Powered by Innovation <span class="dots">•••</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
