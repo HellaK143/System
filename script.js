@@ -172,12 +172,13 @@ function initializeForm() {
     });
 
     form.addEventListener('submit', function (event) {
-        event.preventDefault();
         if (!form.checkValidity()) {
+            event.preventDefault();
             event.stopPropagation();
             form.classList.add('was-validated');
             return;
         }
+        // If valid, allow normal submission
     });
 }
 
@@ -290,4 +291,11 @@ document.addEventListener('DOMContentLoaded', function () {
     initializeForm();
     populateCountries();
     initializeCountrySelection();
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const program = urlParams.get('program');
+    if (program) {
+        const programInput = document.getElementById('program');
+        if (programInput) programInput.value = program;
+    }
 });
