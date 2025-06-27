@@ -220,16 +220,25 @@ $result = $stmt->get_result();
                                     $conn2->close();
                                 ?></span></div>
                                 <div class="pill-row"><span class="field-label">Mentor</span><span class="field-value">
-                                    <form method="post" action="application_assign.php" class="d-flex align-items-center gap-2 mb-0">
-                                        <input type="hidden" name="id" value="<?= $row['id'] ?>">
-                                        <select class="form-select form-select-sm" name="assigned_mentor" style="max-width: 160px;">
-                                            <option value="">-- Unassigned --</option>
-                                            <?php foreach ($mentors as $m): ?>
-                                                <option value="<?= $m['mentor_id'] ?>" <?= (($row['assigned_mentor'] ?? '') == $m['mentor_id']) ? 'selected' : '' ?>><?= htmlspecialchars($m['full_name']) ?></option>
-                                            <?php endforeach; ?>
-                                        </select>
-                                        <button type="submit" class="btn btn-sm btn-primary">Save</button>
-                                    </form>
+<?php
+$mentor_name = '-';
+if (!empty($row['assigned_mentor'])) {
+    $mentor_id = intval($row['assigned_mentor']);
+    $mentor_res = $conn->query("SELECT full_name FROM mentors WHERE mentor_id = $mentor_id");
+    if ($mentor_res && $m = $mentor_res->fetch_assoc()) {
+        $mentor_name = $m['full_name'];
+    } else {
+        // Try users table
+        $user_res = $conn->query("SELECT username FROM users WHERE user_id = $mentor_id AND role = 'mentor'");
+        if ($user_res && $u = $user_res->fetch_assoc()) {
+            $mentor_name = $u['username'];
+        } else {
+            $mentor_name = $mentor_id;
+        }
+    }
+}
+echo htmlspecialchars($mentor_name);
+?>
                                 </span></div>
                             </div>
                             <div class="application-actions text-end">

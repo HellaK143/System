@@ -15,18 +15,57 @@ nav.sb-topnav.navbar.navbar-expand.navbar-dark.bg-dark
             button#btnNavbarSearch.btn.btn-primary(type='button')
                 i.fas.fa-search
 
-    // Navbar
+    // Custom Admin Dropdown
     ul.navbar-nav.ms-auto.ms-md-0.me-3.me-lg-4
         li.nav-item.dropdown
-            a#navbarDropdown.nav-link.dropdown-toggle(href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false')
-                i.fas.fa-user.fa-fw
-            ul.dropdown-menu.dropdown-menu-end(aria-labelledby='navbarDropdown')
+            a.nav-link.dropdown-toggle.d-flex.align-items-center.gap-2#navbarDropdown(href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false')
+                img(src='https://ui-avatars.com/api/?name=Admin&background=1a1a1a&color=fff&rounded=true&size=32', alt='Admin', class='rounded-circle', style='width:32px;height:32px;object-fit:cover;')
+                span.d-none.d-md-inline.fw-semibold Admin
+            ul.dropdown-menu.dropdown-menu-end.dropdown-menu-admin(aria-labelledby='navbarDropdown')
                 li
-                    a.dropdown-item(href='#!') Settings
+                    a.dropdown-item(href='settings.php')
+                        i.fas.fa-user-cog.text-primary
+                        |  Settings
                 li
-                    a.dropdown-item(href='#!') Activity Log
+                    a.dropdown-item(href='activity_log.php')
+                        i.fas.fa-list-alt.text-success
+                        |  Activity Log
+                li
+                    a.dropdown-item(href='notifications_admin.php')
+                        i.fas.fa-bell.text-warning
+                        |  Notifications
                 li
                     hr.dropdown-divider
                 li
-                    a.dropdown-item(href='#!') Logout
+                    a.dropdown-item(href='logout.php')
+                        i.fas.fa-sign-out-alt.text-danger
+                        |  Logout
+    // Custom dropdown CSS
+    style.
+        .dropdown-menu-admin {
+            min-width: 220px;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+            padding: 0.5rem 0;
+        }
+        .dropdown-menu-admin .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.08rem;
+            padding: 0.75rem 1.25rem;
+            transition: background 0.15s;
+        }
+        .dropdown-menu-admin .dropdown-item i {
+            font-size: 1.2rem;
+            min-width: 22px;
+            text-align: center;
+        }
+        .dropdown-menu-admin .dropdown-item:hover, .dropdown-menu-admin .dropdown-item:focus {
+            background: #f1f3f7;
+            color: #1a1a1a;
+        }
+        .dropdown-menu-admin .dropdown-divider {
+            margin: 0.25rem 0;
+        }
 

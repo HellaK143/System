@@ -23,8 +23,8 @@ nav(class=['sb-sidenav', 'accordion'] class=sidenavStyle)#sidenavAccordion
                     i.fas.fa-angle-down
             #collapseLayouts.collapse(aria-labelledby='headingOne', data-bs-parent='#sidenavAccordion')
                 nav.sb-sidenav-menu-nested.nav
-                    a.nav-link(href='layout-static.html') Static Navigation
-                    a.nav-link(href='layout-sidenav-light.html') Light Sidenav
+                    a.nav-link(href='add_event.php') Events
+                    a.nav-link(href='evaluation.php') Evaluators
 
             a.nav-link.collapsed(href='#', data-bs-toggle='collapse' data-bs-target='#collapsePages' aria-expanded='false' aria-controls='collapsePages')
                 .sb-nav-link-icon
@@ -65,6 +65,11 @@ nav(class=['sb-sidenav', 'accordion'] class=sidenavStyle)#sidenavAccordion
                 .sb-nav-link-icon
                     i.fas.fa-table
                 | Tables
+
+            a.nav-link(href='connect_mentor_entrepreneur.php')
+                .sb-nav-link-icon
+                    i.fas.fa-link
+                | Connect Mentor to Entrepreneur
 
     .sb-sidenav-footer
 

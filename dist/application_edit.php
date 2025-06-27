@@ -13,7 +13,7 @@ $fields = [
     "staff_number","years_at_umu","graduation_year","current_job","employer","faculty",
     "national_id","occupation","marital_status","num_beneficiaries","refugee","disability",
     "disability_text","program_attended","nationality","age_range","phone","email","country",
-    "district","subcounty","village","street","business_idea_name","year_of_inception","sector",
+    "district","subcounty","village","street","business_idea_name","description","year_of_inception","sector",
     "interested_in","initial_capital","cohort"
 ];
 
@@ -155,7 +155,11 @@ $conn->close();
                         <?php foreach (array_slice($fields, 0, ceil(count($fields)/2)) as $field): ?>
                             <div class="pill-field">
                                 <label class="form-label text-capitalize" for="<?= $field ?>"><?= str_replace('_', ' ', $field) ?></label>
-                                <input type="text" id="<?= $field ?>" name="<?= $field ?>" value="<?= htmlspecialchars($row[$field]) ?>">
+                                <?php if ($field === 'description'): ?>
+                                    <textarea id="description" name="description" class="form-control" rows="4" required><?= htmlspecialchars($row['description']) ?></textarea>
+                                <?php else: ?>
+                                    <input type="text" id="<?= $field ?>" name="<?= $field ?>" value="<?= htmlspecialchars($row[$field]) ?>">
+                                <?php endif; ?>
                             </div>
                         <?php endforeach; ?>
                     </div>
@@ -163,7 +167,11 @@ $conn->close();
                         <?php foreach (array_slice($fields, ceil(count($fields)/2)) as $field): ?>
                             <div class="pill-field">
                                 <label class="form-label text-capitalize" for="<?= $field ?>"><?= str_replace('_', ' ', $field) ?></label>
-                                <input type="text" id="<?= $field ?>" name="<?= $field ?>" value="<?= htmlspecialchars($row[$field]) ?>">
+                                <?php if ($field === 'description'): ?>
+                                    <textarea id="description" name="description" class="form-control" rows="4" required><?= htmlspecialchars($row['description']) ?></textarea>
+                                <?php else: ?>
+                                    <input type="text" id="<?= $field ?>" name="<?= $field ?>" value="<?= htmlspecialchars($row[$field]) ?>">
+                                <?php endif; ?>
                             </div>
                         <?php endforeach; ?>
                     </div>

@@ -21,7 +21,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-xl navbar-dark">
         <div class="container">
-            <a class="navbar-brand d-flex align-items-center" href="index.html">
+            <a class="navbar-brand d-flex align-items-center" href="index.php">
                 <img src="logo.png" alt="UMU Logo" class="logo me-2">
                 <div class="brand-text">
                     <span class="main-brand">Uganda Martyrs University</span>
@@ -283,8 +283,14 @@
                             <!-- Step 4: Business Info -->
                             <div class="form-step" id="step4">
                                 <div class="mb-3">
-                                    <label for="business_idea_name" class="form-label">Business/Idea Name*</label>
+                                    <label for="business_idea_name" class="form-label">Business Idea Name*</label>
                                     <input type="text" class="form-control" id="business_idea_name" name="business_idea_name" required>
+                                    <div class="invalid-feedback">Please enter your business idea name.</div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="description" class="form-label">Description*</label>
+                                    <textarea class="form-control" id="description" name="description" rows="4" required></textarea>
+                                    <div class="invalid-feedback">Please enter a description.</div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="sector" class="form-label">Sector*</label>

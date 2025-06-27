@@ -11,11 +11,34 @@ if ($conn->connect_error) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
     $id = intval($_POST['id']);
     $assigned_mentor = isset($_POST['assigned_mentor']) ? intval($_POST['assigned_mentor']) : null;
-    $stmt = $conn->prepare("UPDATE applications SET assigned_mentor = ? WHERE id = ?");
-    if (!$stmt) {
-        die("<div class='alert alert-danger'>SQL Prepare Error: " . htmlspecialchars($conn->error) . "</div>");
+    
+    if ($assigned_mentor) {
+        // Get mentor email
+        $mentor_stmt = $conn->prepare("SELECT email FROM mentors WHERE mentor_id = ?");
+        $mentor_stmt->bind_param("i", $assigned_mentor);
+        $mentor_stmt->execute();
+        $mentor_result = $mentor_stmt->get_result();
+        $mentor_email = null;
+        if ($mentor_row = $mentor_result->fetch_assoc()) {
+            $mentor_email = $mentor_row['email'];
+        }
+        $mentor_stmt->close();
+        
+        // Update both fields
+        $stmt = $conn->prepare("UPDATE applications SET assigned_mentor = ?, assigned_mentor_email = ? WHERE id = ?");
+        if (!$stmt) {
+            die("<div class='alert alert-danger'>SQL Prepare Error: " . htmlspecialchars($conn->error) . "</div>");
+        }
+        $stmt->bind_param("isi", $assigned_mentor, $mentor_email, $id);
+    } else {
+        // Clear both fields
+        $stmt = $conn->prepare("UPDATE applications SET assigned_mentor = NULL, assigned_mentor_email = NULL WHERE id = ?");
+        if (!$stmt) {
+            die("<div class='alert alert-danger'>SQL Prepare Error: " . htmlspecialchars($conn->error) . "</div>");
+        }
+        $stmt->bind_param("i", $id);
     }
-    $stmt->bind_param("ii", $assigned_mentor, $id);
+    
     if ($stmt->execute()) {
         header("Location: applications.php?assigned=1");
         exit();

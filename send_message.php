@@ -8,13 +8,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $recipient_email = trim($_POST['recipient_email'] ?? '');
     $message = trim($_POST['message'] ?? '');
     $sender = $_SESSION['email'] ?? 'system';
+    $redirect_page = '/system2/application_view.php';
+    $is_mentor = ($_SESSION['role'] ?? '') === 'mentor';
+    if ($is_mentor) {
+        $redirect_page = '/system2/dist/application_view_mentor.php';
+    }
     if ($application_id && $recipient_email && $message) {
         $conn = new mysqli($host, $user, $password, $dbname);
         if (!$conn->connect_error) {
             $stmt = $conn->prepare("INSERT INTO messages (application_id, sender, recipient, message, sent_at) VALUES (?, ?, ?, ?, NOW())");
             if (!$stmt) {
                 $_SESSION['msg_error'] = "Prepare failed: " . $conn->error;
-                header("Location: application_view.php?id=$application_id");
+                header("Location: $redirect_page?id=$application_id");
                 exit;
             }
             $stmt->bind_param('isss', $application_id, $sender, $recipient_email, $message);
@@ -32,9 +37,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $_SESSION['msg_error'] = "Missing required fields.";
     }
-    header("Location: application_view.php?id=$application_id");
+    if ($application_id > 0) {
+        header("Location: $redirect_page?id=$application_id");
+    } else {
+        $back = $_SERVER['HTTP_REFERER'] ?? 'index.php';
+        header("Location: $back");
+    }
     exit;
 }
 // fallback
-header('Location: index.html');
+header('Location: index.php');
 exit; 

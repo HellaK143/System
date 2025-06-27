@@ -15,7 +15,7 @@ $fields = [
     "staff_number","years_at_umu","graduation_year","current_job","employer","faculty",
     "national_id","occupation","marital_status","num_beneficiaries","refugee","disability",
     "disability_text","program_attended","nationality","age_range","phone","email","country",
-    "district","subcounty","village","street","business_idea_name","year_of_inception","sector",
+    "district","subcounty","village","street","business_idea_name","description","year_of_inception","sector",
     "interested_in","initial_capital","cohort"
 ];
 

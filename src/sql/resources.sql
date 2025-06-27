@@ -18,4 +18,17 @@ CREATE TABLE IF NOT EXISTS bookings (
     INDEX idx_resource (resource_id),
     INDEX idx_user (user_id),
     INDEX idx_start (start_datetime)
-); 
+);
+
+-- Notifications table for evaluator/admin/mentor/entrepreneur dashboards
+CREATE TABLE IF NOT EXISTS `notifications` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `user_id` INT(11) NOT NULL,
+  `type` ENUM('info','warning','success','error') DEFAULT 'info',
+  `category` VARCHAR(100) DEFAULT NULL,
+  `title` VARCHAR(255) DEFAULT NULL,
+  `message` TEXT DEFAULT NULL,
+  `is_read` TINYINT(1) DEFAULT 0,
+  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4; 

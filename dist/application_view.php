@@ -398,14 +398,22 @@ if (!empty($_SESSION['msg_error'])) {
                     $s->fetch();
                     $s->close();
                 }
-                // Fetch mentor username
+                // Fetch mentor name
+                $mentor_name = '-';
                 if ($assigned_mentor) {
-                    $s = $conn->prepare("SELECT username FROM users WHERE user_id = ?");
-                    $s->bind_param("i", $assigned_mentor);
-                    $s->execute();
-                    $s->bind_result($mentor_name);
-                    $s->fetch();
-                    $s->close();
+                    $mentor_id = intval($assigned_mentor);
+                    $mentor_res = $conn->query("SELECT full_name FROM mentors WHERE mentor_id = $mentor_id");
+                    if ($mentor_res && $m = $mentor_res->fetch_assoc()) {
+                        $mentor_name = $m['full_name'];
+                    } else {
+                        // Try users table
+                        $user_res = $conn->query("SELECT username FROM users WHERE user_id = $mentor_id AND role = 'mentor'");
+                        if ($user_res && $u = $user_res->fetch_assoc()) {
+                            $mentor_name = $u['username'];
+                        } else {
+                            $mentor_name = $mentor_id;
+                        }
+                    }
                 }
                 // Fetch all evaluators and mentors for dropdowns
                 $evaluators = $mentors = [];

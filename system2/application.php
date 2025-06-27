@@ -1,0 +1,1 @@
+<a class="navbar-brand d-flex align-items-center" href="index.php"> 
