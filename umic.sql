@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 26, 2025 at 06:14 PM
+-- Generation Time: Jun 27, 2025 at 08:25 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -45,7 +45,9 @@ INSERT INTO `activity_log` (`id`, `user_id`, `username`, `role`, `activity`, `ac
 (1, 3, 'isaac2', 'admin', 'Message Sent', '2025-06-26 16:01:27', 'Message sent to ocayaisaac55@gmail.com for application 7'),
 (2, 3, 'isaac2', 'admin', 'Mentor Assigned', '2025-06-26 16:01:35', 'Mentor ID 2 assigned to application 7'),
 (3, 3, 'isaac2', 'admin', 'Feedback Sent', '2025-06-26 16:02:21', 'Feedback sent for application 7'),
-(4, 3, 'isaac2', 'admin', 'Mentor Assigned', '2025-06-26 16:10:56', 'Mentor ID 2 assigned to application 7');
+(4, 3, 'isaac2', 'admin', 'Mentor Assigned', '2025-06-26 16:10:56', 'Mentor ID 2 assigned to application 7'),
+(5, 3, 'isaac2', 'admin', 'Mentor Assigned', '2025-06-27 07:35:37', 'Mentor ID 3 assigned to application 6'),
+(6, 3, 'isaac2', 'admin', 'Mentor Assigned', '2025-06-27 07:41:31', 'Mentor ID 3 assigned to application 6');
 
 -- --------------------------------------------------------
 
@@ -62,7 +64,6 @@ CREATE TABLE `applications` (
   `status` enum('Submitted','Under Review','Shortlisted','Rejected','Accepted') DEFAULT 'Submitted',
   `feedback` text DEFAULT NULL,
   `assigned_mentor` int(11) DEFAULT NULL,
-  `assigned_mentor_email` varchar(100) DEFAULT NULL,
   `campus` varchar(100) DEFAULT NULL,
   `student_number` varchar(100) DEFAULT NULL,
   `course` varchar(100) DEFAULT NULL,
@@ -98,20 +99,21 @@ CREATE TABLE `applications` (
   `year_of_inception` varchar(10) DEFAULT NULL,
   `interested_in` varchar(100) DEFAULT NULL,
   `submitted_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `assigned_evaluator` int(11) DEFAULT NULL
+  `assigned_evaluator` int(11) DEFAULT NULL,
+  `assigned_mentor_email` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `applications`
 --
 
-INSERT INTO `applications` (`id`, `program_id`, `program`, `full_name`, `category`, `status`, `feedback`, `assigned_mentor`, `assigned_mentor_email`, `campus`, `student_number`, `course`, `year_of_study`, `graduation_year`, `current_job`, `employer`, `staff_number`, `faculty`, `years_at_umu`, `national_id`, `occupation`, `marital_status`, `num_beneficiaries`, `nationality`, `phone`, `email`, `street`, `village`, `subcounty`, `country`, `district`, `refugee`, `age_range`, `disability`, `disability_text`, `gender`, `business_idea_name`, `sector`, `program_attended`, `initial_capital`, `cohort`, `year_of_inception`, `interested_in`, `submitted_at`, `assigned_evaluator`) VALUES
-(1, 1, NULL, 'isaac', 'student', 'Submitted', NULL, NULL, NULL, 'main', 'uyyyu', 'hh', '3', '2025', '', '', '', '', '', '', '', '', '', 'ug', '9', 'i@gmail.com', 'hh', 'n', 'mj', 'Uganda', 'Kampala', 'no', '19-25', 'no', '', NULL, 'yt', 'agriculture', 'unesco', '64', 'h', '2021', 'funding', '2025-06-25 12:41:05', NULL),
-(3, 1, NULL, 'isaacs', 'student', 'Submitted', NULL, NULL, NULL, 'main', 'uyyyu', 'hh', '3', '2025', '', '', '', '', '', '', '', '', '', 'ug', '9', 'i@gmail.com', 'hh', 'n', 'mj', 'Uganda', 'Kampala', 'no', '19-25', 'no', '', NULL, 'yt', 'agriculture', 'unesco', '64', 'h', '2021', 'funding', '2025-06-25 12:41:05', NULL),
-(4, 1, NULL, 'isaac', 'student', 'Submitted', NULL, NULL, NULL, 'mains', 'uyyyu', 'hh', '3', '2025', '', '', '', '', '', '', '', '', '', 'ug', '9', 'i@gmail.com', 'hh', 'n', 'mj', 'Uganda', 'Kampala', 'no', '19-25', 'no', '', NULL, 'yt', 'agriculture', 'unesco', '64', 'h', '2021', 'funding', '2025-06-25 12:41:05', NULL),
-(5, 1, NULL, 'kk', 'student', 'Submitted', NULL, NULL, NULL, 'main', '23', 'ff', '1', '2025', '', '', '', '', '', '', '', '', '', 'u', '343', 'd@gmail.com', 'rere', 're', 'ere', 'Uganda', 'Kaabong', 'no', '19-25', 'no', '', NULL, 'ee', 'agriculture', 'suesca', '45', 'e', '2017', 'mentorship', '2025-06-25 14:47:42', NULL),
-(6, 1, NULL, 'q', 'staff', 'Shortlisted', '', NULL, NULL, '', '', '', '2025', '', '', 'q', 'q', '2', '', '', '', '', 'u', '3', 'e@gmail.com', 'w', 'w', 'w', 'Uganda', 'Kampala', 'no', '31-35', 'no', '', NULL, 'we', 'agriculture', 'tagdev', '3', 'e', '2016', 'funding', '2025-06-25 14:52:43', NULL),
-(7, 1, NULL, 'w', 'student', 'Under Review', 'nicelyyyyyyy', 2, NULL, 'main', '3', 'ds', '5', '2025', '', '', '', '', '', '', '', '', '', 'r', '2', 'd@gmail.com', 'e', 'w', 'w', 'Uganda', 'Kaabong', 'yes', '36-40', 'no', '', NULL, 'w', 'agriculture', 'unesco', '2', 'w', '2015', 'funding', '2025-06-25 14:54:27', NULL);
+INSERT INTO `applications` (`id`, `program_id`, `program`, `full_name`, `category`, `status`, `feedback`, `assigned_mentor`, `campus`, `student_number`, `course`, `year_of_study`, `graduation_year`, `current_job`, `employer`, `staff_number`, `faculty`, `years_at_umu`, `national_id`, `occupation`, `marital_status`, `num_beneficiaries`, `nationality`, `phone`, `email`, `street`, `village`, `subcounty`, `country`, `district`, `refugee`, `age_range`, `disability`, `disability_text`, `gender`, `business_idea_name`, `sector`, `program_attended`, `initial_capital`, `cohort`, `year_of_inception`, `interested_in`, `submitted_at`, `assigned_evaluator`, `assigned_mentor_email`) VALUES
+(1, 1, NULL, 'isaac', 'student', 'Submitted', NULL, NULL, 'main', 'uyyyu', 'hh', '3', '2025', '', '', '', '', '', '', '', '', '', 'ug', '9', 'i@gmail.com', 'hh', 'n', 'mj', 'Uganda', 'Kampala', 'no', '19-25', 'no', '', NULL, 'yt', 'agriculture', 'unesco', '64', 'h', '2021', 'funding', '2025-06-25 12:41:05', NULL, NULL),
+(3, 1, NULL, 'isaacs', 'student', 'Submitted', NULL, NULL, 'main', 'uyyyu', 'hh', '3', '2025', '', '', '', '', '', '', '', '', '', 'ug', '9', 'i@gmail.com', 'hh', 'n', 'mj', 'Uganda', 'Kampala', 'no', '19-25', 'no', '', NULL, 'yt', 'agriculture', 'unesco', '64', 'h', '2021', 'funding', '2025-06-25 12:41:05', NULL, NULL),
+(4, 1, NULL, 'isaac', 'student', 'Submitted', NULL, NULL, 'mains', 'uyyyu', 'hh', '3', '2025', '', '', '', '', '', '', '', '', '', 'ug', '9', 'i@gmail.com', 'hh', 'n', 'mj', 'Uganda', 'Kampala', 'no', '19-25', 'no', '', NULL, 'yt', 'agriculture', 'unesco', '64', 'h', '2021', 'funding', '2025-06-25 12:41:05', NULL, NULL),
+(5, 1, NULL, 'kk', 'student', 'Submitted', NULL, NULL, 'main', '23', 'ff', '1', '2025', '', '', '', '', '', '', '', '', '', 'u', '343', 'd@gmail.com', 'rere', 're', 'ere', 'Uganda', 'Kaabong', 'no', '19-25', 'no', '', NULL, 'ee', 'agriculture', 'suesca', '45', 'e', '2017', 'mentorship', '2025-06-25 14:47:42', NULL, NULL),
+(6, 1, NULL, 'q', 'staff', 'Shortlisted', '', 3, '', '', '', '', '2025', '', '', 'q', 'q', '2', '', '', '', '', 'u', '3', 'e@gmail.com', 'w', 'w', 'w', 'Uganda', 'Kampala', 'no', '31-35', 'no', '', NULL, 'we', 'agriculture', 'tagdev', '3', 'e', '2016', 'funding', '2025-06-25 14:52:43', NULL, 'a@gmail.com'),
+(7, 1, NULL, 'w', 'student', 'Under Review', 'nicelyyyyyyy', 2, 'main', '3', 'ds', '5', '2025', '', '', '', '', '', '', '', '', '', 'r', '2', 'd@gmail.com', 'e', 'w', 'w', 'Uganda', 'Kaabong', 'yes', '36-40', 'no', '', NULL, 'w', 'agriculture', 'unesco', '2', 'w', '2015', 'funding', '2025-06-25 14:54:27', NULL, 'isaac@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -151,6 +153,13 @@ CREATE TABLE `bookings` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `bookings`
+--
+
+INSERT INTO `bookings` (`id`, `user_id`, `resource_id`, `start_datetime`, `end_datetime`, `status`, `created_at`) VALUES
+(5, 3, 1, '2025-06-28 21:17:00', '2025-06-20 21:17:00', 'w', '2025-06-26 18:17:43');
+
 -- --------------------------------------------------------
 
 --
@@ -181,7 +190,7 @@ CREATE TABLE `entrepreneur` (
 --
 
 INSERT INTO `entrepreneur` (`entrepreneur_id`, `first_name`, `last_name`, `email`, `phone`, `student_id`, `department`, `course`, `year_of_study`, `gender`, `profile_picture`, `registration_date`, `interests`, `sector`, `role`, `password`) VALUES
-(1, 'alkclkac', 'kjkahkla', 'adlkandlk@gmail.com', '077777777', 'hhdklan', 'kjsjk', 'jhgjhgjk', 3, 'female', '1750847006_jogendra-singh-VrW_EgqwOUo-unsplash.jpg', '2025-06-25 13:23:26', '', '', '', '');
+(1, 'alkclkac', 'kjkahkla', 'adlkandlk@gmail.com', '077777777', 'hhdklan', 'kjsjk', 'jhgjhgjk', 3, 'female', '1750847006_jogendra-singh-VrW_EgqwOUo-unsplash.jpg', '2025-06-25 13:23:00', 'n', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -258,17 +267,19 @@ CREATE TABLE `mentors` (
   `email` varchar(100) DEFAULT NULL,
   `expertise_area` varchar(100) DEFAULT NULL,
   `phone` varchar(20) DEFAULT NULL,
-  `assigned_department` varchar(100) DEFAULT NULL
+  `assigned_department` varchar(100) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `mentors`
 --
 
-INSERT INTO `mentors` (`mentor_id`, `full_name`, `email`, `expertise_area`, `phone`, `assigned_department`) VALUES
-(1, 'kasozi', 'k@gmail.com', 'Web', '07777777', 'Science'),
-(2, 'isaac', 'isaac@gmail.com', 'Tech', '077777777', 'scie'),
-(3, 'sfs sdf', 'a@gmail.com', 'wwww', '2222222', 'aa');
+INSERT INTO `mentors` (`mentor_id`, `full_name`, `email`, `expertise_area`, `phone`, `assigned_department`, `user_id`) VALUES
+(1, 'kasozi', 'k@gmail.com', 'Web', '07777777', 'Science', NULL),
+(2, 'isaac', 'isaac@gmail.com', 'Tech', '077777777', 'scie', 8),
+(3, 'sfs sdf', 'a@gmail.com', 'wwww', '2222222', 'aa', NULL),
+(4, 'kww@gmail.com', 'kww@gmail.com', 'sc', '88989889', 'sci', NULL);
 
 -- --------------------------------------------------------
 
@@ -310,7 +321,40 @@ INSERT INTO `messages` (`id`, `application_id`, `sender_id`, `recipient_id`, `me
 (16, NULL, 3, 1, 'true', '2025-06-26 11:05:43', NULL, NULL),
 (17, 7, 7, NULL, 'heeeeeyyyyyyy', '2025-06-26 12:43:33', NULL, NULL),
 (18, 7, NULL, NULL, 'thois', '2025-06-26 16:01:27', 'ocayaisaac5566@gmail.com', 'ocayaisaac55@gmail.com'),
-(19, 7, NULL, NULL, 'Dear isaac,\n\nYou have been assigned to mentor the following application:\n\nApplication ID: 7\nApplicant Name: w\nApplicant Email: d@gmail.com\n\nPlease log in to your dashboard to view more details.\n\nRegards,\nUMU Innovation Office', '2025-06-26 16:10:56', 'ocayaisaac5566@gmail.com', 'isaac@gmail.com');
+(19, 7, NULL, NULL, 'Dear isaac,\n\nYou have been assigned to mentor the following application:\n\nApplication ID: 7\nApplicant Name: w\nApplicant Email: d@gmail.com\n\nPlease log in to your dashboard to view more details.\n\nRegards,\nUMU Innovation Office', '2025-06-26 16:10:56', 'ocayaisaac5566@gmail.com', 'isaac@gmail.com'),
+(20, 6, NULL, NULL, 'Dear sfs sdf,\n\nYou have been assigned to mentor the following application:\n\nApplication ID: 6\nApplicant Name: q\nApplicant Email: e@gmail.com\n\nPlease log in to your dashboard to view more details.\n\nRegards,\nUMU Innovation Office', '2025-06-27 07:35:37', 'ocayaisaac5566@gmail.com', 'a@gmail.com'),
+(21, 6, NULL, NULL, 'Dear sfs sdf,\n\nYou have been assigned to mentor the following application:\n\nApplication ID: 6\nApplicant Name: q\nApplicant Email: e@gmail.com\n\nPlease log in to your dashboard to view more details.\n\nRegards,\nUMU Innovation Office', '2025-06-27 07:41:31', 'ocayaisaac5566@gmail.com', 'a@gmail.com'),
+(22, 7, NULL, NULL, 'hey', '2025-06-27 07:46:43', 'isaac@gmail.com', 'd@gmail.com'),
+(23, 7, NULL, NULL, 'heyjnckjanbciuacb cnqiw', '2025-06-27 08:07:35', 'isaac@gmail.com', 'd@gmail.com'),
+(24, 7, NULL, NULL, 'kjncsjcxnpaioscxnaso', '2025-06-27 08:07:49', 'isaac@gmail.com', 'd@gmail.com'),
+(25, 7, NULL, NULL, 'tr', '2025-06-27 08:10:09', 'isaac@gmail.com', 'd@gmail.com'),
+(26, 7, NULL, NULL, 'g', '2025-06-27 08:10:52', 'isaac@gmail.com', 'd@gmail.com'),
+(27, 7, NULL, NULL, 'q', '2025-06-27 08:13:47', 'isaac@gmail.com', 'd@gmail.com'),
+(28, 7, NULL, NULL, 'y', '2025-06-27 08:16:18', 'isaac@gmail.com', 'd@gmail.com'),
+(29, 7, NULL, NULL, 'y', '2025-06-27 08:22:41', 'isaac@gmail.com', 'd@gmail.com'),
+(30, 7, NULL, NULL, 'pepe', '2025-06-27 08:23:39', 'isaac@gmail.com', 'd@gmail.com'),
+(31, 7, NULL, NULL, 't', '2025-06-27 08:28:38', 'isaac@gmail.com', 'd@gmail.com'),
+(32, 7, NULL, NULL, 'm', '2025-06-27 08:30:18', 'isaac@gmail.com', 'd@gmail.com'),
+(33, 7, NULL, NULL, 'b', '2025-06-27 08:53:07', 'isaac@gmail.com', 'd@gmail.com'),
+(34, NULL, 3, 8, 'lknlk', '2025-06-27 18:23:11', NULL, NULL),
+(35, NULL, 3, 8, 'hey', '2025-06-27 18:23:21', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notifications`
+--
+
+CREATE TABLE `notifications` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `type` enum('info','warning','success','error') DEFAULT 'info',
+  `category` varchar(100) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `message` text DEFAULT NULL,
+  `is_read` tinyint(1) DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -340,8 +384,16 @@ INSERT INTO `programs` (`id`, `name`, `description`) VALUES
 CREATE TABLE `resources` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `type` varchar(100) NOT NULL
+  `type` varchar(100) NOT NULL,
+  `description` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `resources`
+--
+
+INSERT INTO `resources` (`id`, `name`, `type`, `description`) VALUES
+(1, 't', 'lab', 'njkk');
 
 -- --------------------------------------------------------
 
@@ -405,25 +457,8 @@ INSERT INTO `users` (`user_id`, `username`, `email`, `password`, `role`, `create
 (1, 'isaac', 'ocayaisaac55@gmail.com', 'kalipso55', 'evaluator', '2025-06-23 11:50:24', NULL),
 (3, 'isaac2', 'ocayaisaac5566@gmail.com', 'kalipso5566', 'admin', '2025-06-23 11:50:24', NULL),
 (6, 'isaac44', 'ocayaisaac5544@gmail.com', 'kalipso5544', 'entrepreneur', '2025-06-23 11:50:24', NULL),
-(7, 'isaac8', 'kww@gmail.com', 'kalipso5577', 'mentor', '2025-06-23 11:50:24', NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `notifications`
---
-
-CREATE TABLE `notifications` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) DEFAULT NULL,
-  `type` enum('info','warning','success','error') DEFAULT 'info',
-  `category` varchar(50) DEFAULT NULL,
-  `title` varchar(255) NOT NULL,
-  `message` text NOT NULL,
-  `is_read` tinyint(1) DEFAULT 0,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+(7, 'isaac4', 'kww@gmail.com', 'kalipso5577', 'mentor', '2025-06-23 11:50:24', NULL),
+(8, 'isaac_mentor', 'isaac@gmail.com', 'password123', 'mentor', '2025-06-27 09:39:01', NULL);
 
 --
 -- Indexes for dumped tables
@@ -505,6 +540,12 @@ ALTER TABLE `messages`
   ADD KEY `recipient_id` (`recipient_id`);
 
 --
+-- Indexes for table `notifications`
+--
+ALTER TABLE `notifications`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `programs`
 --
 ALTER TABLE `programs`
@@ -549,7 +590,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `activity_log`
 --
 ALTER TABLE `activity_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `applications`
@@ -567,7 +608,7 @@ ALTER TABLE `attachments`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `entrepreneur`
@@ -597,13 +638,19 @@ ALTER TABLE `events`
 -- AUTO_INCREMENT for table `mentors`
 --
 ALTER TABLE `mentors`
-  MODIFY `mentor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `mentor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
+--
+-- AUTO_INCREMENT for table `notifications`
+--
+ALTER TABLE `notifications`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `programs`
@@ -615,7 +662,7 @@ ALTER TABLE `programs`
 -- AUTO_INCREMENT for table `resources`
 --
 ALTER TABLE `resources`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `schedules`
@@ -633,7 +680,7 @@ ALTER TABLE `sessions`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
