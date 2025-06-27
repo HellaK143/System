@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -31,7 +34,7 @@ $recent_sessions = $conn->query("SELECT session_type, date, time FROM sessions O
 $conn->close();
 $page_title = 'Admin Dashboard';
 $breadcrumb_items = [];
-$additional_js = "\n<script src='https://cdn.jsdelivr.net/npm/chart.js'></script>\n<script>\nwindow.addEventListener('DOMContentLoaded', function() {\n  var ctx = document.getElementById('adminStatsChart').getContext('2d');\n  new Chart(ctx, {\n    type: 'bar',\n    data: {\n      labels: ['Mentors', 'Entrepreneurs', 'Evaluators', 'Sessions', 'Bookings', 'Events', 'Applications'],\n      datasets: [{\n        label: 'Count',\n        data: [{$num_mentors}, {$num_entrepreneurs}, {$num_evaluators}, {$num_sessions}, {$num_bookings}, {$num_events}, {$num_applications}],\n        backgroundColor: [\n          '#007bff', '#17a2b8', '#28a745', '#ffc107', '#fd7e14', '#6610f2', '#dc3545'\n        ]\n      }]\n    },\n    options: {\n      responsive: true,\n      plugins: {\n        legend: { display: false },\n        title: { display: true, text: 'System Stats' }\n      }\n    }\n  });\n  var ctx2 = document.getElementById('appStatusPie').getContext('2d');\n  new Chart(ctx2, {\n    type: 'pie',\n    data: {\n      labels: " . json_encode($status_labels) . ",\n      datasets: [{\n        data: " . json_encode($status_counts) . ",\n        backgroundColor: ['#007bff','#ffc107','#28a745','#dc3545','#6c757d']\n      }]\n    },\n    options: {\n      responsive: true,\n      plugins: {\n        legend: { position: 'bottom' },\n        title: { display: true, text: 'Applications by Status' }\n      }\n    }\n  });\n});\n</script>\n";
+$additional_js = "\n<script src='/system2/dist/js/chart.umd.min.js'></script>\n<script>\nwindow.addEventListener('DOMContentLoaded', function() {\n  function showFallback(id, msg) {\n    var c = document.getElementById(id);\n    if (c) {\n      var parent = c.parentElement;\n      var fallback = document.createElement('div');\n      fallback.className = 'text-center text-muted py-4';\n      fallback.innerText = msg;\n      parent.innerHTML = '';\n      parent.appendChild(fallback);\n    }\n  }\n  if (typeof Chart === 'undefined') {\n    showFallback('adminStatsChart', 'Chart.js failed to load.');\n    showFallback('appStatusPie', 'Chart.js failed to load.');\n    console.error('Chart.js is not loaded.');\n    return;\n  }\n  var statsData = " . json_encode([$num_mentors, $num_entrepreneurs, $num_evaluators, $num_sessions, $num_bookings, $num_events, $num_applications], JSON_NUMERIC_CHECK) . ";\n  var statsLabels = " . json_encode(['Mentors', 'Entrepreneurs', 'Evaluators', 'Sessions', 'Bookings', 'Events', 'Applications']) . ";\n  console.log('System Stats Data:', statsData, statsLabels);\n  var hasStats = statsData.some(function(x){return x>0});\n  var ctx = document.getElementById('adminStatsChart');\n  if (!hasStats) {\n    showFallback('adminStatsChart', 'No system data available.');\n    console.warn('No system data for bar chart.');\n  } else if (ctx) {\n    new Chart(ctx.getContext('2d'), {\n      type: 'bar',\n      data: {\n        labels: statsLabels,\n        datasets: [{\n          label: 'Count',\n          data: statsData,\n          backgroundColor: [\n            '#007bff', '#17a2b8', '#28a745', '#ffc107', '#fd7e14', '#6610f2', '#dc3545'\n          ]\n        }]\n      },\n      options: {\n        responsive: true,\n        plugins: {\n          legend: { display: false },\n          title: { display: true, text: 'System Stats' }\n        }\n      }\n    });\n  }\n  var statusData = " . json_encode($status_counts, JSON_NUMERIC_CHECK) . ";\n  var statusLabels = " . json_encode($status_labels) . ";\n  console.log('Status Data:', statusData, statusLabels);\n  var hasStatus = statusData.some(function(x){return x>0});\n  var ctx2 = document.getElementById('appStatusPie');\n  if (!hasStatus) {\n    showFallback('appStatusPie', 'No application status data available.');\n    console.warn('No data for pie chart.');\n  } else if (ctx2) {\n    new Chart(ctx2.getContext('2d'), {\n      type: 'pie',\n      data: {\n        labels: statusLabels,\n        datasets: [{\n          data: statusData,\n          backgroundColor: ['#007bff','#ffc107','#28a745','#dc3545','#6c757d']\n        }]\n      },\n      options: {\n        responsive: true,\n        plugins: {\n          legend: { position: 'bottom' },\n          title: { display: true, text: 'Applications by Status' }\n        }\n      }\n    });\n  }\n});\n</script>\n";
 ob_start();
 ?>
 <div class="row g-4 mb-4">
@@ -42,7 +45,7 @@ ob_start();
           <i class="fas fa-users fa-2x me-3"></i>
           <div>
             <div class="fs-4 fw-bold"><?= $num_users ?></div>
-            <div>Users</div>
+            <div class="card-label">Users</div>
           </div>
         </div>
       </div>
@@ -55,7 +58,7 @@ ob_start();
           <i class="fas fa-file-alt fa-2x me-3"></i>
           <div>
             <div class="fs-4 fw-bold"><?= $num_applications ?></div>
-            <div>Applications</div>
+            <div class="card-label">Applications</div>
           </div>
         </div>
       </div>
@@ -68,7 +71,7 @@ ob_start();
           <i class="fas fa-calendar-alt fa-2x me-3"></i>
           <div>
             <div class="fs-4 fw-bold"><?= $num_events ?></div>
-            <div>Events</div>
+            <div class="card-label">Events</div>
           </div>
         </div>
       </div>
@@ -81,7 +84,7 @@ ob_start();
           <i class="fas fa-book fa-2x me-3"></i>
           <div>
             <div class="fs-4 fw-bold"><?= $num_bookings ?></div>
-            <div>Bookings</div>
+            <div class="card-label">Bookings</div>
           </div>
         </div>
       </div>

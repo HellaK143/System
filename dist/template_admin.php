@@ -14,7 +14,8 @@ if (session_status() === PHP_SESSION_NONE) {
     <title><?= $page_title ?? 'Admin Dashboard' ?></title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="/system2/dist/css/styles.css" rel="stylesheet" />
-    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <link href="/system2/dist/css/admin-custom.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
     <?php if (isset($additional_css)): ?>
         <style><?= $additional_css ?></style>
     <?php endif; ?>
@@ -56,6 +57,10 @@ if (session_status() === PHP_SESSION_NONE) {
                             Dashboard
                         </a>
                         <div class="sb-sidenav-menu-heading">Management</div>
+                        <a class="nav-link" href="users_admin.php">
+                            <div class="sb-nav-link-icon"><i class="fas fa-users-cog"></i></div>
+                            Manage Users
+                        </a>
                         <!-- Events Dropdown -->
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseEvents" aria-expanded="false" aria-controls="collapseEvents">
                             <div class="sb-nav-link-icon"><i class="fas fa-bullhorn"></i></div>
@@ -209,7 +214,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/system2/dist/js/scripts.js"></script>
     <?php if (isset($additional_js)): ?>
-        <script><?= $additional_js ?></script>
+        <?= $additional_js ?>
     <?php endif; ?>
 </body>
-</html> 
+</html>

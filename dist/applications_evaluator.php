@@ -1,55 +1,44 @@
 <?php
 session_start();
-if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'entrepreneur') {
-    header('Location: ../login.php');
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'evaluator') {
+    header('Location: login.php');
     exit();
 }
-$email = $_SESSION['email'];
-$conn = new mysqli('localhost', 'root', '', 'umic');
+require_once '../db.php';
+$evaluator_id = $_SESSION['user_id'];
+$conn = new mysqli($host, $user, $password, $dbname);
 if ($conn->connect_error) die('DB error');
 $status_filter = $_GET['status'] ?? '';
 $category_filter = $_GET['category'] ?? '';
-$where = "WHERE email = '" . $conn->real_escape_string($email) . "'";
+$where = "WHERE assigned_evaluator = $evaluator_id";
 if ($status_filter) $where .= " AND status = '" . $conn->real_escape_string($status_filter) . "'";
 if ($category_filter) $where .= " AND category = '" . $conn->real_escape_string($category_filter) . "'";
 $applications = [];
-$res = $conn->query("SELECT id, category, status, submitted_at, assigned_evaluator, assigned_mentor, feedback FROM applications $where ORDER BY id DESC");
+$res = $conn->query("SELECT id, full_name, category, status, submitted_at FROM applications $where ORDER BY id DESC");
 while ($row = $res->fetch_assoc()) {
-    // Get evaluator and mentor names
-    $ev_name = '-';
-    $mn_name = '-';
-    if ($row['assigned_evaluator']) {
-        $ev_res = $conn->query("SELECT name FROM users WHERE id = " . intval($row['assigned_evaluator']));
-        if ($ev_row = $ev_res->fetch_assoc()) $ev_name = $ev_row['name'];
+    // Get average score
+    $avg = '-';
+    $score_res = $conn->query("SELECT AVG(score) as avg_score FROM evaluation_scores WHERE application_id = " . intval($row['id']));
+    if ($score_row = $score_res->fetch_assoc()) {
+        $avg = $score_row['avg_score'] ? round($score_row['avg_score'],2) : '-';
     }
-    if ($row['assigned_mentor']) {
-        $mn_res = $conn->query("SELECT name FROM users WHERE id = " . intval($row['assigned_mentor']));
-        if ($mn_row = $mn_res->fetch_assoc()) $mn_name = $mn_row['name'];
-    }
-    $row['evaluator_name'] = $ev_name;
-    $row['mentor_name'] = $mn_name;
+    $row['avg_score'] = $avg;
     $applications[] = $row;
 }
 // Get unique statuses and categories for filter dropdowns
 $status_opts = [];
 $cat_opts = [];
-$res = $conn->query("SELECT DISTINCT status FROM applications WHERE email = '" . $conn->real_escape_string($email) . "'");
+$res = $conn->query("SELECT DISTINCT status FROM applications WHERE assigned_evaluator = $evaluator_id");
 while ($r = $res->fetch_assoc()) $status_opts[] = $r['status'];
-$res = $conn->query("SELECT DISTINCT category FROM applications WHERE email = '" . $conn->real_escape_string($email) . "'");
+$res = $conn->query("SELECT DISTINCT category FROM applications WHERE assigned_evaluator = $evaluator_id");
 while ($r = $res->fetch_assoc()) $cat_opts[] = $r['category'];
 $conn->close();
+$page_title = 'My Assigned Applications';
+$breadcrumb_items = ['Applications'];
+ob_start();
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Entrepreneur Dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
-</head>
-<body>
 <div class="container mt-5">
-    <h3 class="mb-4">My Applications</h3>
+    <h3 class="mb-4">My Assigned Applications</h3>
     <form class="row g-3 mb-3" method="get">
         <div class="col-md-4">
             <select class="form-select" name="status" onchange="this.form.submit()">
@@ -68,23 +57,22 @@ $conn->close();
             </select>
         </div>
         <div class="col-md-4 text-end">
-            <a href="entrepreneur_dashboard.php" class="btn btn-secondary">Reset Filters</a>
+            <a href="applications_evaluator.php" class="btn btn-secondary">Reset Filters</a>
         </div>
     </form>
     <?php if (empty($applications)): ?>
-        <div class="alert alert-info">You have not submitted any applications yet.</div>
+        <div class="alert alert-info">No applications assigned to you yet.</div>
     <?php else: ?>
     <div class="table-responsive">
         <table class="table table-bordered align-middle">
             <thead class="table-light">
                 <tr>
                     <th>ID</th>
+                    <th>Applicant Name</th>
                     <th>Category</th>
                     <th>Status</th>
                     <th>Date Submitted</th>
-                    <th>Assigned Evaluator</th>
-                    <th>Assigned Mentor</th>
-                    <th>Feedback</th>
+                    <th>Average Score</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -92,20 +80,22 @@ $conn->close();
             <?php foreach ($applications as $app): ?>
                 <tr>
                     <td><?= $app['id'] ?></td>
+                    <td><?= htmlspecialchars($app['full_name']) ?></td>
                     <td><?= htmlspecialchars($app['category']) ?></td>
                     <td><?= htmlspecialchars($app['status']) ?></td>
                     <td><?= htmlspecialchars($app['submitted_at']) ?></td>
-                    <td><?= htmlspecialchars($app['evaluator_name']) ?></td>
-                    <td><?= htmlspecialchars($app['mentor_name']) ?></td>
-                    <td><?= $app['feedback'] ? nl2br(htmlspecialchars($app['feedback'])) : '-' ?></td>
-                    <td><a href="application_view.php?id=<?= $app['id'] ?>" class="btn btn-info btn-sm">View</a></td>
+                    <td><?= $app['avg_score'] ?></td>
+                    <td>
+                        <a href="evaluate_application_evaluator.php?id=<?= $app['id'] ?>" class="btn btn-primary btn-sm">Evaluate</a>
+                        <a href="application_view_evaluator.php?id=<?= $app['id'] ?>" class="btn btn-info btn-sm">View</a>
+                    </td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
         </table>
     </div>
     <?php endif; ?>
-    <a href="../login.php" class="btn btn-secondary mt-4">Logout</a>
 </div>
-</body>
-</html> 
+<?php
+$page_content = ob_get_clean();
+include 'template_evaluator.php'; 

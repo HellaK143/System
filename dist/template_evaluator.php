@@ -17,13 +17,14 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'evaluator') {
     <meta name="author" content="" />
     <title><?= $page_title ?? 'Evaluator Dashboard' ?></title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <link href="css/evaluator-custom.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
-    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
     <?php if (isset($additional_css)): ?>
         <style><?= $additional_css ?></style>
     <?php endif; ?>
 </head>
-<body class="sb-nav-fixed">
+<body class="sb-nav-fixed evaluator-dashboard">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <a class="navbar-brand ps-3" href="evaluator_dashboard.php">Evaluator</a>
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
@@ -53,7 +54,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'evaluator') {
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Dashboard
                         </a>
-                        <a class="nav-link" href="evaluate_application_evaluator.php">
+                        <a class="nav-link" href="applications_evaluator.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-clipboard-check"></i></div>
                             Evaluate Applications
                         </a>
@@ -122,4 +123,4 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'evaluator') {
         <script><?= $additional_js ?></script>
     <?php endif; ?>
 </body>
-</html> 
+</html>

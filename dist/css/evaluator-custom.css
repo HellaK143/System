@@ -1,0 +1,320 @@
+/* UMU Evaluator Dashboard Custom Styles */
+:root {
+    --primary-color: #000000;
+    --accent-color: #E91D00;
+    --highlight-color: #FFEA00;
+    --text-light: #ffffff;
+    --text-dark: #222222;
+    --sidebar-bg: #ffffff;
+    --sidebar-active: #E91D00;
+    --sidebar-hover: #FFEA00;
+    --card-bg: #fff;
+    --card-shadow: 0 4px 24px rgba(233,29,0,0.08);
+}
+
+.evaluator-dashboard .sb-topnav.navbar {
+    background: linear-gradient(90deg, var(--primary-color) 60%, #222 100%) !important;
+    border-bottom: 3px solid var(--accent-color);
+    box-shadow: 0 4px 18px rgba(0,0,0,0.10);
+    height: 64px !important;
+    border-radius: 0 0 18px 18px;
+    z-index: 1040;
+    padding-left: 0.5rem;
+    padding-right: 1.2rem;
+    display: flex;
+    align-items: center;
+}
+.evaluator-dashboard .sb-topnav .navbar-brand {
+    font-weight: 700;
+    color: var(--accent-color) !important;
+    letter-spacing: 1px;
+    font-size: 1.35rem;
+    text-shadow: 0 2px 8px rgba(233,29,0,0.08);
+    padding-left: 0.7rem;
+    padding-right: 1.2rem;
+    display: flex;
+    align-items: center;
+}
+.evaluator-dashboard .sb-topnav .navbar-brand:before {
+    content: '\f0c3';
+    font-family: 'FontAwesome';
+    color: var(--highlight-color);
+    margin-right: 10px;
+    font-size: 1.3em;
+}
+.evaluator-dashboard .sb-sidenav {
+    background: linear-gradient(180deg, #fff 80%, #f4f6fb 100%) !important;
+    color: var(--primary-color);
+    border-right: 2px solid var(--accent-color);
+    box-shadow: 2px 0 12px rgba(233,29,0,0.04);
+    width: 230px !important;
+    min-width: 230px !important;
+    max-width: 230px !important;
+    overflow-x: hidden !important;
+}
+.evaluator-dashboard .sb-sidenav .sb-sidenav-menu {
+    padding-right: 0 !important;
+}
+.evaluator-dashboard .sb-sidenav .nav {
+    margin-right: 0 !important;
+}
+.evaluator-dashboard .sb-sidenav .nav-link {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--primary-color) !important;
+    margin-bottom: 0 !important;
+    font-weight: 500;
+    transition: all 0.18s cubic-bezier(.4,0,.2,1);
+    padding-top: 0.45rem !important;
+    padding-bottom: 0.45rem !important;
+    border-radius: 8px;
+}
+.evaluator-dashboard .sb-sidenav .nav-link .sb-nav-link-icon {
+    color: var(--accent-color) !important;
+    font-size: 1.1em;
+    margin-right: 0.7em;
+    transition: color 0.18s;
+}
+.evaluator-dashboard .sb-sidenav .nav-link.active .sb-nav-link-icon,
+.evaluator-dashboard .sb-sidenav .nav-link:focus .sb-nav-link-icon {
+    color: #fff !important;
+}
+.evaluator-dashboard .sb-sidenav .nav-link:hover, .evaluator-dashboard .sb-sidenav .nav-link:focus {
+    background: #FFEA00 !important;
+    color: var(--primary-color) !important;
+}
+.evaluator-dashboard .sb-sidenav .nav-link:hover .sb-nav-link-icon, .evaluator-dashboard .sb-sidenav .nav-link:focus .sb-nav-link-icon {
+    color: var(--primary-color) !important;
+}
+.evaluator-dashboard .sb-sidenav .sb-sidenav-menu-heading {
+    color: var(--accent-color);
+    font-size: 1rem;
+    margin-top: 0.35rem !important;
+    margin-bottom: 0.18rem !important;
+    letter-spacing: 1px;
+    padding-left: 1.2rem;
+    border-top: 1px solid #f0f0f0;
+    padding-top: 0.18rem !important;
+    padding-bottom: 0.18rem !important;
+    line-height: 1.05;
+}
+.evaluator-dashboard .sb-sidenav .sb-sidenav-menu-heading:first-child {
+    border-top: none;
+    padding-top: 0;
+    margin-top: 0.05rem;
+}
+.evaluator-dashboard .sb-sidenav-footer {
+    background: linear-gradient(90deg, #f4f6fb 60%, #fff 100%) !important;
+    border-top: 2px solid var(--accent-color);
+    color: var(--primary-color);
+    padding: 1.1rem 1.2rem 1.1rem 1.2rem !important;
+    font-size: 0.98rem;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    display: flex;
+    align-items: center;
+    gap: 0.7em;
+}
+.evaluator-dashboard .sb-sidenav-footer .small:before {
+    content: '\f007'; /* FontAwesome user icon */
+    font-family: 'FontAwesome';
+    color: var(--accent-color);
+    margin-right: 0.5em;
+    font-size: 1.1em;
+    vertical-align: middle;
+}
+.evaluator-dashboard .card, .evaluator-dashboard .table {
+    background: #fff !important;
+    color: var(--primary-color);
+    border: 1.5px solid #ececec;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(233,29,0,0.08);
+    margin-bottom: 0.5rem;
+    position: relative;
+    overflow: visible;
+}
+.evaluator-dashboard .card::before {
+    content: '\f02e'; /* fa-bookmark as a decorative icon */
+    font-family: 'FontAwesome';
+    color: #e53935 !important; /* bright red */
+    font-size: 2.2rem;
+    position: absolute;
+    top: -18px;
+    right: 18px;
+    opacity: 0.13;
+    pointer-events: none;
+    z-index: 1;
+}
+.evaluator-dashboard .table::before {
+    content: '\f0ce'; /* fa-table as a decorative icon */
+    font-family: 'FontAwesome';
+    color: var(--accent-color);
+    font-size: 2rem;
+    position: absolute;
+    top: -14px;
+    left: 18px;
+    opacity: 0.10;
+    pointer-events: none;
+    z-index: 1;
+}
+.evaluator-dashboard .card-header {
+    background: linear-gradient(90deg, var(--accent-color), var(--highlight-color));
+    color: var(--primary-color) !important;
+    border-bottom: 1px solid #eee;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    font-size: 1.1rem;
+}
+.evaluator-dashboard .table {
+    background: #fff !important;
+    color: var(--primary-color);
+    border-radius: 16px !important;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(233,29,0,0.10) !important;
+    border: none !important;
+    margin-bottom: 1.5rem;
+    font-size: 1.04rem;
+    transition: box-shadow 0.22s cubic-bezier(.4,0,.2,1);
+    animation: fadeInUp 0.7s cubic-bezier(.4,0,.2,1);
+}
+.evaluator-dashboard .table thead {
+    background: linear-gradient(90deg, var(--accent-color), var(--highlight-color));
+    color: var(--primary-color);
+    font-weight: 700;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    border-bottom: 2px solid var(--accent-color);
+}
+.evaluator-dashboard .table th, .evaluator-dashboard .table td {
+    padding: 0.85rem 1.1rem !important;
+    vertical-align: middle !important;
+    border: none !important;
+    transition: background 0.18s, color 0.18s;
+}
+.evaluator-dashboard .table-striped > tbody > tr:nth-of-type(odd) {
+    background: #fffbe6 !important;
+}
+.evaluator-dashboard .table tbody tr {
+    transition: box-shadow 0.18s, background 0.18s, transform 0.18s;
+    cursor: pointer;
+}
+.evaluator-dashboard .table tbody tr:hover {
+    background: #FFEA00 !important;
+    color: var(--primary-color) !important;
+    box-shadow: 0 2px 16px rgba(255,234,0,0.13);
+    transform: scale(1.01);
+    z-index: 1;
+}
+.evaluator-dashboard .table .badge, .evaluator-dashboard .table .status {
+    font-size: 0.98em;
+    border-radius: 6px;
+    padding: 0.35em 0.8em;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+.evaluator-dashboard .table .btn, .evaluator-dashboard .table .btn-sm {
+    border-radius: 6px !important;
+    font-size: 0.97em;
+    padding: 0.32em 0.9em;
+    margin: 0 0.1em;
+    transition: background 0.18s, color 0.18s, box-shadow 0.18s, transform 0.18s;
+}
+.evaluator-dashboard .table .btn:hover {
+    background: var(--highlight-color) !important;
+    color: var(--primary-color) !important;
+    box-shadow: 0 2px 8px rgba(255,234,0,0.13);
+    transform: scale(1.04);
+}
+.evaluator-dashboard .table input[type="text"], .evaluator-dashboard .table input[type="search"], .evaluator-dashboard .table select {
+    border-radius: 6px;
+    border: 1.5px solid #ececec;
+    font-size: 0.97em;
+    padding: 0.32em 0.7em;
+    margin: 0.1em 0;
+    transition: border 0.18s;
+}
+.evaluator-dashboard .table input[type="text"]:focus, .evaluator-dashboard .table input[type="search"]:focus, .evaluator-dashboard .table select:focus {
+    border-color: var(--accent-color);
+    outline: none;
+}
+.evaluator-dashboard .table .text-muted {
+    color: #b0b0b0 !important;
+}
+.evaluator-dashboard .card.text-bg-primary,
+.evaluator-dashboard .card.text-bg-success,
+.evaluator-dashboard .card.text-bg-info,
+.evaluator-dashboard .card.text-bg-warning {
+    background: #fff !important;
+    border: 2px solid #e0e0e0 !important;
+    border-radius: 18px !important;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.07), 0 1.5px 6px rgba(0,0,0,0.03);
+    transition: transform 0.18s cubic-bezier(.4,0,.2,1), box-shadow 0.18s cubic-bezier(.4,0,.2,1), border-color 0.18s;
+    position: relative;
+    overflow: hidden;
+    padding: 1.2rem 1.1rem 1.1rem 1.1rem;
+    min-height: 120px;
+}
+.evaluator-dashboard .card.text-bg-primary:hover,
+.evaluator-dashboard .card.text-bg-success:hover,
+.evaluator-dashboard .card.text-bg-info:hover,
+.evaluator-dashboard .card.text-bg-warning:hover {
+    transform: translateY(-6px) scale(1.025);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.13), 0 2px 8px rgba(0,0,0,0.07);
+    border-color: #007bff !important;
+}
+.evaluator-dashboard .card .fs-4 {
+    color: #000 !important;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+}
+.evaluator-dashboard .card .card-label {
+    color: #000 !important;
+    font-size: 1.08rem;
+    font-weight: 500;
+    margin-top: 0.1rem;
+    letter-spacing: 0.01em;
+}
+.evaluator-dashboard .card i.fas {
+    color: #888;
+    margin-right: 0.7rem;
+    font-size: 2.1rem;
+    vertical-align: middle;
+    transition: color 0.18s;
+}
+.evaluator-dashboard .card:hover i.fas {
+    color: #007bff;
+}
+.evaluator-dashboard .card.text-bg-primary::before,
+.evaluator-dashboard .card.text-bg-success::before,
+.evaluator-dashboard .card.text-bg-info::before,
+.evaluator-dashboard .card.text-bg-warning::before {
+    color: #e53935 !important;
+}
+@media (max-width: 991px) {
+    .evaluator-dashboard .table th, .evaluator-dashboard .table td {
+        padding: 0.55rem 0.5rem !important;
+        font-size: 0.97rem;
+    }
+    .evaluator-dashboard .sb-sidenav {
+        font-size: 1rem;
+    }
+    .evaluator-dashboard .card {
+        margin-bottom: 1.5rem;
+    }
+}
+
+/* Reset icon color for all other cards */
+.evaluator-dashboard .card:not(.text-bg-primary):not(.text-bg-success):not(.text-bg-info):not(.text-bg-warning)::before {
+    color: var(--highlight-color) !important;
+}
+
+/* FINAL OVERRIDE: Force vivid red icon only for the four summary cards */
+.evaluator-dashboard .card.text-bg-primary::before,
+.evaluator-dashboard .card.text-bg-success::before,
+.evaluator-dashboard .card.text-bg-info::before,
+.evaluator-dashboard .card.text-bg-warning::before {
+    color: #ff0000 !important;
+    opacity: 1 !important;
+}

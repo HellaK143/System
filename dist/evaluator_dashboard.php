@@ -98,8 +98,8 @@ ob_start();
                     <div class="d-flex align-items-center">
                         <i class="fas fa-clipboard-list fa-2x me-3"></i>
                         <div>
-                            <div class="fs-4 fw-bold"><?= $num_assigned ?></div>
-                            <div>Assigned Applications</div>
+                            <div class="fs-4 fw-bold text-black"><?= $num_assigned ?></div>
+                            <div class="card-label">Assigned Applications</div>
                         </div>
                     </div>
                 </div>
@@ -111,8 +111,8 @@ ob_start();
                     <div class="d-flex align-items-center">
                         <i class="fas fa-check-circle fa-2x me-3"></i>
                         <div>
-                            <div class="fs-4 fw-bold"><?= $num_evaluated ?></div>
-                            <div>Applications Evaluated</div>
+                            <div class="fs-4 fw-bold text-black"><?= $num_evaluated ?></div>
+                            <div class="card-label">Applications Evaluated</div>
                         </div>
                     </div>
                 </div>
@@ -124,8 +124,8 @@ ob_start();
                     <div class="d-flex align-items-center">
                         <i class="fas fa-star fa-2x me-3"></i>
                         <div>
-                            <div class="fs-4 fw-bold"><?= $avg_score ?></div>
-                            <div>Average Score Given</div>
+                            <div class="fs-4 fw-bold text-black"><?= $avg_score ?></div>
+                            <div class="card-label">Average Score Given</div>
                         </div>
                     </div>
                 </div>
@@ -137,8 +137,8 @@ ob_start();
                     <div class="d-flex align-items-center">
                         <i class="fas fa-bell fa-2x me-3"></i>
                         <div>
-                            <div class="fs-4 fw-bold"><?= $num_unread_notif ?></div>
-                            <div>Unread Notifications</div>
+                            <div class="fs-4 fw-bold text-black"><?= $num_unread_notif ?></div>
+                            <div class="card-label">Unread Notifications</div>
                         </div>
                     </div>
                 </div>

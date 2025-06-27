@@ -34,6 +34,7 @@ ob_start();
             <?php endif; ?>
         </tbody>
     </table>
+    <div class="fs-4 fw-bold" style="color: #e53935 !important; background: yellow !important; font-size: 2rem !important; border: 2px solid red !important; z-index: 9999 !important; position: relative !important;">VISIBLE TEST</div>
 </div>
 <?php
 $page_content = ob_get_clean();

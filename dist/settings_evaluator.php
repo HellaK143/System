@@ -43,25 +43,33 @@ $page_title = 'Evaluator Settings';
 $breadcrumb_items = ['Settings'];
 ob_start();
 ?>
-<div class="container my-5">
-    <h2>Edit Profile</h2>
-    <?php if ($success): ?><div class="alert alert-success"> <?= htmlspecialchars($success) ?> </div><?php endif; ?>
-    <?php if ($error): ?><div class="alert alert-danger"> <?= htmlspecialchars($error) ?> </div><?php endif; ?>
-    <form method="post" class="w-50">
-        <div class="mb-3">
-            <label class="form-label">Name</label>
-            <input type="text" name="username" class="form-control" value="<?= htmlspecialchars($user['username'] ?? '') ?>" required>
+<div class="container my-5 d-flex justify-content-center align-items-center" style="min-height:70vh;">
+    <div class="card shadow-lg p-4" style="max-width: 420px; width:100%; border-radius: 18px;">
+        <div class="text-center mb-4">
+            <div style="width:80px;height:80px;margin:0 auto;">
+                <img src="https://ui-avatars.com/api/?name=<?= urlencode($user['username'] ?? 'Evaluator') ?>&background=007bff&color=fff&rounded=true&size=80" alt="Avatar" class="rounded-circle shadow">
+            </div>
+            <h3 class="mt-3 mb-1" style="font-weight:700;">Edit Profile</h3>
+            <div class="text-muted mb-2" style="font-size:1.08rem;">Update your evaluator account details</div>
         </div>
-        <div class="mb-3">
-            <label class="form-label">Email</label>
-            <input type="email" name="email" class="form-control" value="<?= htmlspecialchars($user['email'] ?? '') ?>" required>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">New Password</label>
-            <input type="password" name="password" class="form-control" placeholder="Leave blank to keep current password">
-        </div>
-        <button type="submit" class="btn btn-primary">Save Changes</button>
-    </form>
+        <?php if ($success): ?><div class="alert alert-success text-center py-2"> <?= htmlspecialchars($success) ?> </div><?php endif; ?>
+        <?php if ($error): ?><div class="alert alert-danger text-center py-2"> <?= htmlspecialchars($error) ?> </div><?php endif; ?>
+        <form method="post" autocomplete="off">
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Name</label>
+                <input type="text" name="username" class="form-control form-control-lg" value="<?= htmlspecialchars($user['username'] ?? '') ?>" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Email</label>
+                <input type="email" name="email" class="form-control form-control-lg" value="<?= htmlspecialchars($user['email'] ?? '') ?>" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label fw-semibold">New Password</label>
+                <input type="password" name="password" class="form-control form-control-lg" placeholder="Leave blank to keep current password">
+            </div>
+            <button type="submit" class="btn btn-primary w-100 py-2 fw-bold" style="font-size:1.1rem;">Save Changes</button>
+        </form>
+    </div>
 </div>
 <?php
 $page_content = ob_get_clean();
